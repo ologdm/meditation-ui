@@ -13,7 +13,7 @@ val Pink40 = Color(0xFF7D5260)
 
 // custom
 val TextWhite = Color(0xffeeeeee)
-val DeepBlue = Color(0xff06164c)
+val DeepBlue = Color(0xff06164c) // stesso che su 'color.xml'
 val ButtonBlue = Color(0xff505cf3)
 val DarkerButtonBlue = Color(0xff566894)
 val LightRed = Color(0xfffc879a)
