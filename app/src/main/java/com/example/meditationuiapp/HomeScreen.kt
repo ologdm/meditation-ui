@@ -1,16 +1,24 @@
 package com.example.meditationuiapp
 
+import android.widget.GridLayout
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -24,17 +32,30 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.meditationuiapp.ui.theme.Beige1
+import com.example.meditationuiapp.ui.theme.Beige2
+import com.example.meditationuiapp.ui.theme.Beige3
 import com.example.meditationuiapp.ui.theme.BlueViolet1
+import com.example.meditationuiapp.ui.theme.BlueViolet2
+import com.example.meditationuiapp.ui.theme.BlueViolet3
 import com.example.meditationuiapp.ui.theme.ButtonBlue
 import com.example.meditationuiapp.ui.theme.DarkerButtonBlue
 import com.example.meditationuiapp.ui.theme.DeepBlue
+import com.example.meditationuiapp.ui.theme.LightGreen1
+import com.example.meditationuiapp.ui.theme.LightGreen2
+import com.example.meditationuiapp.ui.theme.LightGreen3
 import com.example.meditationuiapp.ui.theme.LightRed
+import com.example.meditationuiapp.ui.theme.OrangeYellow1
+import com.example.meditationuiapp.ui.theme.OrangeYellow2
+import com.example.meditationuiapp.ui.theme.OrangeYellow3
 import com.example.meditationuiapp.ui.theme.TextWhite
 
 // TODO: note
@@ -51,35 +72,71 @@ fun HomeScreenPreview() {
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    modifier: Modifier = Modifier
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .background(DeepBlue)
             .fillMaxSize()
     ) {
         Column {
             // 1
-            GreetingSection()
+            GreetingSection("Dimitri")
+
             // 2
-            ChipSection(
-                listOf("SweetSleep", "Insomnia", "Depression")
-            )
+            ChipSection(listOf("SweetSleep", "Insomnia", "Depression"))
+
             // 3
             CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")
+
+            // 4
+            FeatureSection(
+                listOf(
+                    Feature(
+                        title = "Sleep Meditation",
+                        iconId = R.drawable.ic_headphone,
+                        lightColor = BlueViolet1,
+                        mediumColor = BlueViolet2,
+                        darkColor = BlueViolet3
+                    ),
+                    Feature(
+                        title = "Tips for sleeping",
+                        iconId = R.drawable.ic_videocam,
+                        lightColor = LightGreen1,
+                        mediumColor = LightGreen2,
+                        darkColor = LightGreen3
+                    ),
+                    Feature(
+                        title = "Night island",
+                        iconId = R.drawable.ic_videocam,
+                        lightColor = OrangeYellow1,
+                        mediumColor = OrangeYellow2,
+                        darkColor = OrangeYellow3
+                    ),
+                    Feature(
+                        title = "Calming Sounds",
+                        iconId = R.drawable.ic_headphone,
+                        lightColor = Beige1,
+                        mediumColor = Beige2,
+                        darkColor = Beige3
+                    ),
+                    // ecc
+                )
+            )
         }
     }
 }
 
 
-// 1° sezione
+// --------- 1° SECTION ----------------------------------------------
 @Composable
 fun GreetingSection(
-    name: String = "Dimitri"
+    name: String = "Dude"
 ) {
-
     Row(
         // voglio mettere gli elementi ai lati della riga
-        horizontalArrangement = Arrangement.SpaceBetween, // metti elementi ai bordi
+        horizontalArrangement = Arrangement.SpaceBetween, // spingi elementi ai lati
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
@@ -113,7 +170,7 @@ fun GreetingSection(
             tint = Color.White, // colore standard
             // alternative
 //            tint = AquaBlue, // colore da color
-//            tint = MaterialTheme.colorScheme.primary, // colore da color
+//            tint = MaterialTheme.colorScheme.primary, // colore generato da M3
             modifier = Modifier.size(24.dp)
         )
     }
@@ -131,8 +188,8 @@ fun ChipSection(
     LazyRow(
         Modifier.background(Color.DarkGray)
     ) {
+        // items = componente di compose
         items(chips.size) { it ->
-
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
@@ -155,13 +212,12 @@ fun ChipSection(
                     fontSize = 20.sp
                 )
             }
-
         }
     }
 }
 
 
-// 2° sezione
+// 3° sezione
 @Composable
 fun CurrentMeditation(
     color: Color = LightRed,
@@ -212,4 +268,186 @@ fun CurrentMeditation(
 
     }
 }
+
+// 4° sezione
+// LazyVerticalGrid,
+// LazyVerticalStaggeredGrid
+@Composable
+fun FeatureSection(
+    features: List<Feature>
+) {
+    Column(
+
+    ) {
+        // 1 elemento
+        Text(
+            text = "Featured",
+            style = MaterialTheme.typography.titleLarge,
+            color = Color.White,
+            modifier = Modifier.padding(15.dp)
+        )
+
+        /** LazyVerticalGrid -> e cambiata nella ultime versioni
+         * firma attuale di base */
+        // cells -> diventa columns
+//        LazyVerticalGrid(
+//            columns: GridCells,
+//            modifier: Modifier = Modifier,
+//        contentPadding: PaddingValues = PaddingValues(0.dp),
+//        horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
+//        verticalArrangement: Arrangement.Vertical = Arrangement.Top,
+//        content: LazyGridScope.() -> Unit
+//        )
+
+        // 2 elemento
+        LazyVerticalGrid(
+            // GridCells -> Fixed, FixedSize, Adaptive
+            columns = GridCells.Fixed(2),
+            // 100 perche voglio che lascia spazio alla nav bar
+            contentPadding = PaddingValues(start = 7.5.dp, end = 7.5.dp, bottom = 100.dp),
+            modifier = Modifier.fillMaxHeight()
+//                .fillMaxWidth() // no
+        ) {
+            // count, itemCount lambda -> obbligatori
+            items(features.size) {
+                FeatureItem(features.get(it))
+            }
+        }
+    }
+
+}
+
+
+// Canvas for waves
+// BoxWithConstraints
+//
+@Composable
+fun FeatureItem(
+    feature: Feature
+) {
+    // main component -----------
+    // struttura interna: elementi sovrapposti
+    BoxWithConstraints(
+        modifier = Modifier
+            .padding(7.5.dp) // 7.5dp
+            .aspectRatio(1f) // forma, 1f=quadrato
+            .clip(RoundedCornerShape(10.dp))
+            .background(feature.darkColor) // strato inferione
+    ) {
+        val width = constraints.maxWidth
+        val height = constraints.maxHeight
+
+        // medium colored path
+        // !! definisco i punto per le linee divisorie
+        val mediumPoint1 = Offset(0f, height * 0.3f)
+        val mediumPoint2 = Offset(width * 0.1f, height * 0.35f)
+        val mediumPoint3 = Offset(width * 0.4f, height * 0.05f)
+        val mediumPoint4 = Offset(width * 0.7f, height * 0.7f)
+        val mediumPoint5 = Offset(width * 1.4f, -height.toFloat())
+
+        // funzone specifica per grafica
+        val mediumColorPath = Path().apply {
+            moveTo(mediumPoint1.x, mediumPoint1.y)
+            standardQuadFromTo(mediumPoint1, mediumPoint2)
+            standardQuadFromTo(mediumPoint2, mediumPoint3)
+            standardQuadFromTo(mediumPoint3, mediumPoint4)
+            standardQuadFromTo(mediumPoint4, mediumPoint5)
+            lineTo(width.toFloat() + 100f, height.toFloat() + 100f)
+            lineTo(-100f, height.toFloat() + 100f)
+            close()
+        }
+
+        // light colored path
+        val lightPoint1 = Offset(0f, height * 0.35f)
+        val lightPoint2 = Offset(width * 0.1f, height * 0.4f)
+        val lightPoint3 = Offset(width * 0.3f, height * 0.35f)
+        val lightPoint4 = Offset(width * 0.65f, height.toFloat())
+        val lightPoint5 = Offset(width * 1.4f, -height.toFloat() / 3f)
+
+        val lightColoredPath = Path().apply {
+            moveTo(lightPoint1.x, lightPoint1.y)
+            standardQuadFromTo(lightPoint1, lightPoint2)
+            standardQuadFromTo(lightPoint2, lightPoint3)
+            standardQuadFromTo(lightPoint3, lightPoint4)
+            standardQuadFromTo(lightPoint4, lightPoint5)
+            lineTo(width.toFloat() + 100f, height.toFloat() + 100f)
+            lineTo(-100f, height.toFloat() + 100f)
+            close()
+        }
+
+        // 1. first layer
+        Canvas(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            drawPath(
+                path = mediumColorPath,
+                color = feature.mediumColor
+            )
+            drawPath(
+                path = lightColoredPath,
+                color = feature.lightColor
+            )
+        }
+
+        // secondo layer
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(15.dp)
+        ) {
+            Text(
+                text = feature.title,
+                style = MaterialTheme.typography.titleMedium,
+                color = Color.White,
+                lineHeight = 26.sp, // piu spazio tra le righe
+                modifier = Modifier
+                    .align(Alignment.TopStart) //
+            )
+
+            // default painter, contentDescription
+            Icon(
+                painter = painterResource(id = feature.iconId),
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+            )
+
+            // default text
+            Text(
+                text = "Start",
+                color = TextWhite,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp) )
+                    .padding(vertical = 6.dp, horizontal = 16.dp) // margine interno
+                    .clickable {
+                        // TODO da solo
+                        //  open detail view
+                    }
+            )
+        }
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun FeaturePreview() {
+    FeatureItem(
+        Feature(
+            title = "Sleep meditation",
+            iconId = R.drawable.ic_headphone,
+            lightColor = BlueViolet1,
+            mediumColor = BlueViolet2,
+            darkColor = BlueViolet3
+        )
+    )
+}
+
+
 
