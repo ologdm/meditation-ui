@@ -3,3 +3,31 @@
 
     <style name="Theme.MeditationUiApp" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
+
+
+<!--TODO: check se serve-->
+<!--<resources xmlns:tools="http://schemas.android.com/tools">-->
+<!--&lt;!&ndash; Base application theme. &ndash;&gt;-->
+<!--<style name="Theme.MeditationUIYouTube" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+<!--    &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--    <item name="colorPrimary">@color/deepblue</item>-->
+<!--    <item name="colorPrimaryVariant">@color/deepblue</item>-->
+<!--    <item name="colorOnPrimary">@color/white</item>-->
+<!--    &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--    <item name="colorSecondary">@color/deepblue</item>-->
+<!--    <item name="colorSecondaryVariant">@color/deepblue</item>-->
+<!--    <item name="colorOnSecondary">@color/black</item>-->
+<!--    &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--    <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>-->
+<!--    &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--</style>-->
+
+<!--<style name="Theme.MeditationUIYouTube.NoActionBar">-->
+<!--    <item name="windowActionBar">false</item>-->
+<!--    <item name="windowNoTitle">true</item>-->
+<!--</style>-->
+
+<!--<style name="Theme.MeditationUIYouTube.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+<!--<style name="Theme.MeditationUIYouTube.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
+<!--</resources>-->
