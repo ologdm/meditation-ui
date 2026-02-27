@@ -1,6 +1,5 @@
 package com.example.meditationuiapp
 
-import android.widget.GridLayout
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,6 +40,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.meditationuiapp.ui.theme.AquaBlue
 import com.example.meditationuiapp.ui.theme.Beige1
 import com.example.meditationuiapp.ui.theme.Beige2
 import com.example.meditationuiapp.ui.theme.Beige3
@@ -62,13 +63,6 @@ import com.example.meditationuiapp.ui.theme.TextWhite
 //  per le grafiche sugli elementi:
 //      - meditaz corrente - si puo fare con vari generatori immagini vettoriali
 //      - featured - onde generate con compose
-
-
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen()
-}
 
 
 @Composable
@@ -109,7 +103,7 @@ fun HomeScreen(
                     ),
                     Feature(
                         title = "Night island",
-                        iconId = R.drawable.ic_videocam,
+                        iconId = R.drawable.ic_headphone,
                         lightColor = OrangeYellow1,
                         mediumColor = OrangeYellow2,
                         darkColor = OrangeYellow3
@@ -125,6 +119,11 @@ fun HomeScreen(
                 )
             )
         }
+        // 5 ultimo
+        BottomMenu(
+            items,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 }
 
@@ -310,7 +309,7 @@ fun FeatureSection(
         ) {
             // count, itemCount lambda -> obbligatori
             items(features.size) {
-                FeatureItem(features.get(it))
+                FeatureItem(feature = features[it])
             }
         }
     }
@@ -423,7 +422,7 @@ fun FeatureItem(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .clip(RoundedCornerShape(10.dp))
-                    .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp) )
+                    .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
                     .padding(vertical = 6.dp, horizontal = 16.dp) // margine interno
                     .clickable {
                         // TODO da solo
@@ -434,20 +433,137 @@ fun FeatureItem(
     }
 }
 
+@Composable
+fun BottomMenu(
+    items: List<Pair<Int, String>>, // TODO refactor
+    modifier: Modifier = Modifier, // uso sulle row se necessario
+    startSelectedElement: Int = 0, // default su home
+    selectedIconColor: Color = ButtonBlue,
+    selectedTextColor: Color = TextWhite,
+    defaultTextColor: Color = AquaBlue
+) {
+    var selectedNavIndex by remember {
+        mutableIntStateOf(startSelectedElement)
+    }
+
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween, // space
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .background(DeepBlue) // TODO background solo per test
+            .padding(vertical = 10.dp, horizontal = 20.dp) // interno al background
+
+    ) {
+        items.forEachIndexed { index, item ->
+            BottomMenuItem(
+                item = items[index],
+                isSelected = index == selectedNavIndex,
+                selectedIconColor = selectedIconColor,
+                selectedTextColor = selectedTextColor,
+                defaultTextColor = defaultTextColor,
+                onItemCLick = {
+                    selectedNavIndex = index
+                }
+            )
+        }
+
+    }
+}
+
+
+@Composable
+fun BottomMenuItem(
+    item: Pair<Int, String>,
+    isSelected: Boolean,
+    selectedIconColor: Color = ButtonBlue,
+    selectedTextColor: Color = TextWhite,
+    defaultTextColor: Color = AquaBlue,
+    onItemCLick: () -> Unit
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .clickable {
+                onItemCLick()
+            }
+    ) {
+        Icon(
+            painter = painterResource(item.first),
+            contentDescription = item.second,
+            tint = if (isSelected) selectedTextColor else defaultTextColor,
+            modifier = Modifier
+                .size(40.dp)
+                .background(
+                    color = if (isSelected) selectedIconColor else Color.Transparent,
+                    shape = RoundedCornerShape(10.dp)
+                )
+                .padding(10.dp)
+        )
+
+        Text(
+            item.second,
+            color = if (isSelected) selectedTextColor else defaultTextColor,
+            modifier = Modifier
+                .padding(top = 8.dp)
+        )
+
+    }
+
+}
+
+
+// TODO con navigationBar !!!!!!
+//@Composable
+//fun BottomMenu1() {
+//    NavigationBar {
+//        NavigationBarItem(
+//            selected = true,
+//            onClick = { },
+//            icon = { Icon(R.drawable.ic_home, contentDescription = "Home") },
+//            label = { Text("Home") }
+//        )
+//    }
+//}
+
+
+// -------------------- PREVIEW ----------------------------------------------
+//@Preview(showBackground = true)
+//@Composable
+//fun HomeScreenPreview() {
+//    HomeScreen()
+//}
+
+
+//@Preview(showBackground = true)
+//@Composable
+//fun FeaturePreview() {
+//    FeatureItem(
+//        Feature(
+//            title = "Sleep meditation",
+//            iconId = R.drawable.ic_headphone,
+//            lightColor = BlueViolet1,
+//            mediumColor = BlueViolet2,
+//            darkColor = BlueViolet3
+//        )
+//    )
+//}
 
 @Preview(showBackground = true)
 @Composable
-fun FeaturePreview() {
-    FeatureItem(
-        Feature(
-            title = "Sleep meditation",
-            iconId = R.drawable.ic_headphone,
-            lightColor = BlueViolet1,
-            mediumColor = BlueViolet2,
-            darkColor = BlueViolet3
-        )
-    )
+fun BottomNavPreview() {
+    BottomMenu(items)
 }
 
+
+// devo avere una lista con for each per avere elementi selezionabili
+val items = listOf(
+    Pair(R.drawable.ic_home, "Home"),
+    Pair(R.drawable.ic_bubble, "Meditate"),
+    Pair(R.drawable.ic_moon, "Sleep"),
+    Pair(R.drawable.ic_music, "Music"),
+    Pair(R.drawable.ic_profile, "Profile"),
+)
 
 
