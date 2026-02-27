@@ -79,7 +79,7 @@ fun HomeScreen(
             GreetingSection("Dimitri")
 
             // 2
-            ChipSection(listOf("SweetSleep", "Insomnia", "Depression"))
+            ChipSection(listOf("Sweet sleep", "Insomnia", "Depression"))
 
             // 3
             CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")
@@ -119,7 +119,6 @@ fun HomeScreen(
                 )
             )
         }
-        // 5 ultimo
         BottomMenu(
             items,
             modifier = Modifier.align(Alignment.BottomCenter)
@@ -131,7 +130,7 @@ fun HomeScreen(
 // --------- 1° SECTION ----------------------------------------------
 @Composable
 fun GreetingSection(
-    name: String = "Dude"
+    name: String = "Dude",
 ) {
     Row(
         // voglio mettere gli elementi ai lati della riga
@@ -141,6 +140,7 @@ fun GreetingSection(
             .fillMaxWidth()
 //            .background(ButtonBlue) // preview
             .padding(15.dp)
+            .padding(bottom = 6.dp)
 
     ) {
         Column(
@@ -153,13 +153,15 @@ fun GreetingSection(
                 fontWeight = FontWeight.SemiBold,
 //                fontStyle = // no
                 style = MaterialTheme.typography.titleMedium,
-                color = TextWhite
+                color = TextWhite,
+                modifier = Modifier
+                    .padding(bottom = 12.dp)
             )
 
             Text(
                 text = "We wish you have a good day!",
                 style = MaterialTheme.typography.bodyLarge,
-                color = TextWhite
+                color = AquaBlue
             )
         }
 
@@ -185,29 +187,29 @@ fun ChipSection(
     var selectedChipIndex by remember { mutableStateOf(0) }
 
     LazyRow(
-        Modifier.background(Color.DarkGray)
+//        Modifier.background(Color.DarkGray) // preview
     ) {
         // items = componente di compose
-        items(chips.size) { it ->
+        items(chips.size) { index ->
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .padding(start = 15.dp, top = 15.dp, bottom = 15.dp) // esterno
                     .clickable { // azione al click
-                        selectedChipIndex = it
+                        selectedChipIndex = index
                     }
                     .clip(RoundedCornerShape(15.dp)) // rotondità
                     .background(
-                        if (selectedChipIndex == it) ButtonBlue
+                        if (selectedChipIndex == index) ButtonBlue
                         else DarkerButtonBlue
                     )
-                    .padding(15.dp)
+                    .padding(16.dp)
             ) {
                 Text(
-                    chips[it],
+                    chips[index],
                     color = TextWhite,
 //                    fontStyle = ,// no
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = MaterialTheme.typography.bodyMedium,
                     fontSize = 20.sp
                 )
             }
@@ -225,12 +227,13 @@ fun CurrentMeditation(
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .background(Color.White)
+//            .background(Color.White) // preview
             .padding(15.dp)
             .clip(RoundedCornerShape(10.dp))
             .background(color)
-            .padding(horizontal = 15.dp, vertical = 20.dp)
+            .padding(horizontal = 20.dp, vertical = 24.dp)
             .fillMaxWidth()
 
     ) {
@@ -238,7 +241,9 @@ fun CurrentMeditation(
             Text(
                 text = text1,
                 style = MaterialTheme.typography.titleMedium,
-                color = TextWhite
+                fontSize = 22.sp,
+                color = TextWhite,
+                modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
                 text = text2,
@@ -276,6 +281,7 @@ fun FeatureSection(
     features: List<Feature>
 ) {
     Column(
+        modifier = Modifier.padding(top = 20.dp)
 
     ) {
         // 1 elemento
@@ -283,6 +289,7 @@ fun FeatureSection(
             text = "Featured",
             style = MaterialTheme.typography.titleLarge,
             color = Color.White,
+            fontSize = 28.sp,
             modifier = Modifier.padding(15.dp)
         )
 
@@ -393,13 +400,14 @@ fun FeatureItem(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(15.dp)
+                .padding(20.dp)
         ) {
             Text(
                 text = feature.title,
                 style = MaterialTheme.typography.titleMedium,
                 color = Color.White,
-                lineHeight = 26.sp, // piu spazio tra le righe
+                fontSize = 18.sp,
+                lineHeight = 30.sp, // piu spazio tra le righe
                 modifier = Modifier
                     .align(Alignment.TopStart) //
             )
@@ -423,7 +431,7 @@ fun FeatureItem(
                     .align(Alignment.BottomEnd)
                     .clip(RoundedCornerShape(10.dp))
                     .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
-                    .padding(vertical = 6.dp, horizontal = 16.dp) // margine interno
+                    .padding(vertical = 12.dp, horizontal = 16.dp) // margine interno
                     .clickable {
                         // TODO da solo
                         //  open detail view
