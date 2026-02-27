@@ -419,6 +419,8 @@ fun FeatureItem(
                 tint = Color.White,
                 modifier = Modifier
                     .align(Alignment.BottomStart)
+                    .padding(bottom = 8.dp)
+                    .size(24.dp)
             )
 
             // default text
