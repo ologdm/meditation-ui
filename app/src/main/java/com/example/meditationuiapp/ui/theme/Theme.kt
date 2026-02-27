@@ -37,29 +37,33 @@ fun MeditationUiAppTheme(
     content: @Composable () -> Unit
 ) {
 
-    // non serve
-//    val colorScheme =
-//        when {
-//            // 1
-//            dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-//                val context = LocalContext.current
-//
-//                if (darkTheme)
-//                    dynamicDarkColorScheme(context)
-//                else
-//                    dynamicLightColorScheme(context)
-//            }
-//
-//            // 2
-//            darkTheme -> DarkColorScheme
-//            // 3
-//            else -> LightColorScheme
-//        }
-
     MaterialTheme(
         typography = Typography,
+        shapes = Shapes,
+// senza color scheme, manuale da Color.kt
         content = content, // lambda
-        // senza color scheme, manuale da Color.kt
-//        shapes = Shapes // TODO
     )
+
+
+    // default, non serve
+    /*
+    val colorScheme =
+        when {
+            // 1
+            dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+                val context = LocalContext.current
+
+                if (darkTheme)
+                    dynamicDarkColorScheme(context)
+                else
+                    dynamicLightColorScheme(context)
+            }
+
+            // 2
+            darkTheme -> DarkColorScheme
+            // 3
+            else -> LightColorScheme
+        }
+     */
+
 }
