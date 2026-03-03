@@ -37,10 +37,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.meditationuiapp.ui.theme.AquaBlue
 import com.example.meditationuiapp.ui.theme.Beige1
@@ -61,10 +59,49 @@ import com.example.meditationuiapp.ui.theme.OrangeYellow2
 import com.example.meditationuiapp.ui.theme.OrangeYellow3
 import com.example.meditationuiapp.ui.theme.TextWhite
 
-// TODO: note
-//  per le grafiche sugli elementi:
-//      - meditaz corrente - si puo fare con vari generatori immagini vettoriali
-//      - featured - onde generate con compose
+
+
+// devo avere una lista con for each per avere elementi selezionabili
+val navigationItems = listOf(
+    Pair(R.drawable.ic_home, "Home"),
+    Pair(R.drawable.ic_bubble, "Meditate"),
+    Pair(R.drawable.ic_moon, "Sleep"),
+    Pair(R.drawable.ic_music, "Music"),
+    Pair(R.drawable.ic_profile, "Profile"),
+)
+
+val featureElements = listOf(
+    Feature(
+        title = "Sleep Meditation",
+        iconId = R.drawable.ic_headphone,
+        lightColor = BlueViolet1,
+        mediumColor = BlueViolet2,
+        darkColor = BlueViolet3
+    ),
+    Feature(
+        title = "Tips for sleeping",
+        iconId = R.drawable.ic_videocam,
+        lightColor = LightGreen1,
+        mediumColor = LightGreen2,
+        darkColor = LightGreen3
+    ),
+    Feature(
+        title = "Night island",
+        iconId = R.drawable.ic_headphone,
+        lightColor = OrangeYellow1,
+        mediumColor = OrangeYellow2,
+        darkColor = OrangeYellow3
+    ),
+    Feature(
+        title = "Calming Sounds",
+        iconId = R.drawable.ic_headphone,
+        lightColor = Beige1,
+        mediumColor = Beige2,
+        darkColor = Beige3
+    )
+)
+
+val chipList = listOf("Sweet sleep", "Insomnia", "Depression")
 
 
 @Composable
@@ -79,50 +116,15 @@ fun HomeScreen(
         Column {
             // 1
             GreetingSection("Dimitri")
-
             // 2
-            ChipSection(listOf("Sweet sleep", "Insomnia", "Depression"))
-
+            ChipSection(chipList)
             // 3
             CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")
-
             // 4
-            FeatureSection(
-                listOf(
-                    Feature(
-                        title = "Sleep Meditation",
-                        iconId = R.drawable.ic_headphone,
-                        lightColor = BlueViolet1,
-                        mediumColor = BlueViolet2,
-                        darkColor = BlueViolet3
-                    ),
-                    Feature(
-                        title = "Tips for sleeping",
-                        iconId = R.drawable.ic_videocam,
-                        lightColor = LightGreen1,
-                        mediumColor = LightGreen2,
-                        darkColor = LightGreen3
-                    ),
-                    Feature(
-                        title = "Night island",
-                        iconId = R.drawable.ic_headphone,
-                        lightColor = OrangeYellow1,
-                        mediumColor = OrangeYellow2,
-                        darkColor = OrangeYellow3
-                    ),
-                    Feature(
-                        title = "Calming Sounds",
-                        iconId = R.drawable.ic_headphone,
-                        lightColor = Beige1,
-                        mediumColor = Beige2,
-                        darkColor = Beige3
-                    ),
-                    // ecc
-                )
-            )
+            FeatureSection(featureElements)
         }
         BottomMenu(
-            items,
+            navigationItems,
             modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
@@ -132,7 +134,7 @@ fun HomeScreen(
 // --------- 1° SECTION ----------------------------------------------
 @Composable
 fun GreetingSection(
-    name: String = "Dude",
+    name: String = "Mario",
 ) {
     Row(
         // voglio mettere gli elementi ai lati della riga
@@ -424,7 +426,7 @@ fun FeatureItem(
                 tint = Color.White,
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(vertical =4.dp)
+                    .padding(vertical = 4.dp)
                     .size(24.dp)
             )
 
@@ -544,41 +546,11 @@ fun BottomMenuItem(
 
 
 // -------------------- PREVIEW ----------------------------------------------
-//@Preview(showBackground = true)
-//@Composable
-//fun HomeScreenPreview() {
-//    HomeScreen()
-//}
-
-
-//@Preview(showBackground = true)
-//@Composable
-//fun FeaturePreview() {
-//    FeatureItem(
-//        Feature(
-//            title = "Sleep meditation",
-//            iconId = R.drawable.ic_headphone,
-//            lightColor = BlueViolet1,
-//            mediumColor = BlueViolet2,
-//            darkColor = BlueViolet3
-//        )
-//    )
-//}
 
 @Preview(showBackground = true)
 @Composable
 fun BottomNavPreview() {
-    BottomMenu(items)
+    BottomMenu(navigationItems)
 }
-
-
-// devo avere una lista con for each per avere elementi selezionabili
-val items = listOf(
-    Pair(R.drawable.ic_home, "Home"),
-    Pair(R.drawable.ic_bubble, "Meditate"),
-    Pair(R.drawable.ic_moon, "Sleep"),
-    Pair(R.drawable.ic_music, "Music"),
-    Pair(R.drawable.ic_profile, "Profile"),
-)
 
 
