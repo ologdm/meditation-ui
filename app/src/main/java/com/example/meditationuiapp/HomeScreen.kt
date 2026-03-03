@@ -37,8 +37,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.meditationuiapp.ui.theme.AquaBlue
 import com.example.meditationuiapp.ui.theme.Beige1
@@ -144,14 +146,13 @@ fun GreetingSection(
 
     ) {
         Column(
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Center
         ) {
-
             Text(
                 text = "Good morning, $name",
                 fontSize = 24.sp,
+                letterSpacing = 1.sp,
                 fontWeight = FontWeight.SemiBold,
-//                fontStyle = // no
                 style = MaterialTheme.typography.titleMedium,
                 color = TextWhite,
                 modifier = Modifier
@@ -161,18 +162,20 @@ fun GreetingSection(
             Text(
                 text = "We wish you have a good day!",
                 style = MaterialTheme.typography.bodyLarge,
-                color = AquaBlue
+                letterSpacing = 1.sp,
+                fontSize = 16.sp,
+                color = AquaBlue,
             )
         }
 
         Icon(
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = null,
-            tint = Color.White, // colore standard
+            tint = AquaBlue, // colore standard
             // alternative
 //            tint = AquaBlue, // colore da color
 //            tint = MaterialTheme.colorScheme.primary, // colore generato da M3
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(26.dp)
         )
     }
 }
@@ -198,12 +201,12 @@ fun ChipSection(
                     .clickable { // azione al click
                         selectedChipIndex = index
                     }
-                    .clip(RoundedCornerShape(15.dp)) // rotondità
+                    .clip(RoundedCornerShape(12.dp)) // rotondità
                     .background(
                         if (selectedChipIndex == index) ButtonBlue
                         else DarkerButtonBlue
                     )
-                    .padding(16.dp)
+                    .padding(vertical = 14.dp, horizontal = 18.dp)
             ) {
                 Text(
                     chips[index],
@@ -230,10 +233,10 @@ fun CurrentMeditation(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
 //            .background(Color.White) // preview
-            .padding(15.dp)
-            .clip(RoundedCornerShape(10.dp))
+            .padding(vertical = 20.dp, horizontal = 15.dp)
+            .clip(RoundedCornerShape(16.dp))
             .background(color)
-            .padding(horizontal = 20.dp, vertical = 24.dp)
+            .padding(horizontal = 18.dp, vertical = 30.dp)
             .fillMaxWidth()
 
     ) {
@@ -243,19 +246,20 @@ fun CurrentMeditation(
                 style = MaterialTheme.typography.titleMedium,
                 fontSize = 22.sp,
                 color = TextWhite,
-                modifier = Modifier.padding(bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 10.dp)
             )
             Text(
                 text = text2,
                 style = MaterialTheme.typography.bodySmall,
-                color = TextWhite
+                color = TextWhite,
+                fontSize = 16.sp
             )
         }
 
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .size(40.dp)
+                .size(44.dp)
                 .clip(CircleShape)
                 .background(ButtonBlue)
 
@@ -400,13 +404,14 @@ fun FeatureItem(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp)
+                .padding(vertical = 30.dp, horizontal = 18.dp)
         ) {
             Text(
                 text = feature.title,
                 style = MaterialTheme.typography.titleMedium,
                 color = Color.White,
-                fontSize = 18.sp,
+                fontSize = 20.sp,
+                letterSpacing = 0.5.sp,
                 lineHeight = 30.sp, // piu spazio tra le righe
                 modifier = Modifier
                     .align(Alignment.TopStart) //
@@ -419,7 +424,7 @@ fun FeatureItem(
                 tint = Color.White,
                 modifier = Modifier
                     .align(Alignment.BottomStart)
-                    .padding(bottom = 8.dp)
+                    .padding(vertical =4.dp)
                     .size(24.dp)
             )
 
@@ -427,13 +432,13 @@ fun FeatureItem(
             Text(
                 text = "Start",
                 color = TextWhite,
-                fontSize = 14.sp,
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
-                    .clip(RoundedCornerShape(10.dp))
+                    .clip(RoundedCornerShape(14.dp))
                     .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
-                    .padding(vertical = 12.dp, horizontal = 16.dp) // margine interno
+                    .padding(vertical = 12.dp, horizontal = 18.dp) // margine interno
                     .clickable {
                         // TODO da solo
                         //  open detail view
