@@ -1,8 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    // mandatory for compose navigation
-    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.serialization)  // extra for nav 3
 }
 
 android {
@@ -55,9 +54,11 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    // navigation 3
+
+    // Core Navigation 3 libraries
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
-    implementation(libs.kotlinx.serialization.json)
+    // Optional add-on libraries (nav3)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.kotlinx.serialization.json)
 }
