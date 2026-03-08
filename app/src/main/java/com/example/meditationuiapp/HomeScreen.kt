@@ -141,20 +141,17 @@ fun GreetingSection(
         ) {
             Text(
                 text = "Good morning, $name",
-                fontSize = 22.sp,
-                letterSpacing = 1.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.SemiBold,
-                lineHeight = 1.em,
                 style = typography.titleMedium,
                 color = TextWhite,
             )
 
-            Spacer(Modifier.padding(bottom = 14.dp))
+            Spacer(Modifier.padding(bottom = 15.dp))
 
             Text(
                 text = "We wish you have a good day!",
                 style = typography.bodyLarge,
-                letterSpacing = 1.sp,
                 fontSize = 15.sp,
                 color = AquaBlue,
             )
@@ -167,7 +164,7 @@ fun GreetingSection(
             // alternative
 //            tint = AquaBlue, // colore da color
 //            tint = MaterialTheme.colorScheme.primary, // colore generato da M3
-            modifier = Modifier.size(26.dp)
+            modifier = Modifier.size(24.dp)
         )
     }
 }
@@ -200,8 +197,8 @@ fun ChipSection(
                         else DarkerButtonBlue
                     )
                     .padding(
-                        vertical = 14.dp,
-                        horizontal = 15.dp
+                        vertical = 15.dp,
+                        horizontal = 16.dp
                     )
             ) {
                 Text(
@@ -209,7 +206,8 @@ fun ChipSection(
                     color = TextWhite,
 //                    fontStyle = ,// no
                     style = typography.bodyLarge,
-                    fontSize = 18.sp
+                    fontSize = 17.sp,
+                    letterSpacing = 1.5.sp
                 )
             }
         }
