@@ -24,6 +24,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -43,6 +44,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -139,20 +141,21 @@ fun GreetingSection(
         ) {
             Text(
                 text = "Good morning, $name",
-                fontSize = 24.sp,
+                fontSize = 22.sp,
                 letterSpacing = 1.sp,
                 fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.titleMedium,
+                lineHeight = 1.em,
+                style = typography.titleMedium,
                 color = TextWhite,
             )
 
-            Spacer(Modifier.padding(bottom = 12.dp))
+            Spacer(Modifier.padding(bottom = 14.dp))
 
             Text(
                 text = "We wish you have a good day!",
-                style = MaterialTheme.typography.bodyLarge,
+                style = typography.bodyLarge,
                 letterSpacing = 1.sp,
-                fontSize = 16.sp,
+                fontSize = 15.sp,
                 color = AquaBlue,
             )
         }
@@ -160,7 +163,7 @@ fun GreetingSection(
         Icon(
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = null,
-            tint = AquaBlue, // colore standard
+            tint = TextWhite, // colore standard
             // alternative
 //            tint = AquaBlue, // colore da color
 //            tint = MaterialTheme.colorScheme.primary, // colore generato da M3
@@ -205,8 +208,8 @@ fun ChipSection(
                     chips[index],
                     color = TextWhite,
 //                    fontStyle = ,// no
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontSize = 20.sp
+                    style = typography.bodyLarge,
+                    fontSize = 18.sp
                 )
             }
         }
