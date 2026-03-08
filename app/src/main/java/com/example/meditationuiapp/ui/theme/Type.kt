@@ -35,8 +35,8 @@ val Typography = Typography(
     titleMedium = TextStyle( // es Good Morning, Daily, Feature title?
         color = TextWhite,
         fontFamily = gothicA1Family,
-        fontWeight = FontWeight.Bold,
-        fontSize = 18.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
         letterSpacing = 1.5.sp
     ),
 
@@ -54,8 +54,7 @@ val Typography = Typography(
         color = AquaBlue,
         fontFamily = gothicA1Family,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp, // era 16.sp
-//        lineHeight = 24.sp,
+        fontSize = 14.sp, //
         letterSpacing = 1.sp
     ),
 
