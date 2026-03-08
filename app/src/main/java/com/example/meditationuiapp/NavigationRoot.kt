@@ -2,8 +2,10 @@ package com.example.meditationuiapp
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 
 
@@ -21,18 +23,21 @@ fun NavigationRoot(
     NavDisplay(
         backStack = backStack,
         onBack = {
-            if (backStack.size > 1) backStack.removeLastOrNull()
+            if (backStack.size > 1) { backStack.removeLastOrNull() } // TODO !! doesen't work, click back still exits from app
         },
-//        entryDecorators = TODO
+        entryDecorators = listOf(
+            rememberSaveableStateHolderNavEntryDecorator(), // mantiene lo stato dei composable tra navigazioni
+            rememberViewModelStoreNavEntryDecorator () // senza il viewmodel non ha scope l'entry ma l'activity
+        ),
         entryProvider = entryProvider {
             entry<Root.HomePage> { navKey ->
                 HomeScreen(modifier = modifier, onFeatureClick = { featureId ->
-                    backStack.add(Root.FeatureDetail(id = featureId)) // TODO
+                    backStack.add(Root.FeatureDetail(id = featureId))
                 })
             }
 
             entry<Root.FeatureDetail> { navKey ->
-                // TODO:
+                // TODO: ok
                 FeatureDetailScreen(navKey.id) // passa id al viewmodel Detail
             }
         }
