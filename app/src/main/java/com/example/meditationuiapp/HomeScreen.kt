@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -40,6 +42,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.meditationuiapp.ui.theme.AquaBlue
 import com.example.meditationuiapp.ui.theme.Beige1
 import com.example.meditationuiapp.ui.theme.Beige2
@@ -60,7 +64,7 @@ import com.example.meditationuiapp.ui.theme.OrangeYellow3
 import com.example.meditationuiapp.ui.theme.TextWhite
 
 
-
+// TODO
 // devo avere una lista con for each per avere elementi selezionabili
 val navigationItems = listOf(
     Pair(R.drawable.ic_home, "Home"),
@@ -70,44 +74,19 @@ val navigationItems = listOf(
     Pair(R.drawable.ic_profile, "Profile"),
 )
 
-val featureElements = listOf(
-    Feature(
-        title = "Sleep Meditation",
-        iconId = R.drawable.ic_headphone,
-        lightColor = BlueViolet1,
-        mediumColor = BlueViolet2,
-        darkColor = BlueViolet3
-    ),
-    Feature(
-        title = "Tips for sleeping",
-        iconId = R.drawable.ic_videocam,
-        lightColor = LightGreen1,
-        mediumColor = LightGreen2,
-        darkColor = LightGreen3
-    ),
-    Feature(
-        title = "Night island",
-        iconId = R.drawable.ic_headphone,
-        lightColor = OrangeYellow1,
-        mediumColor = OrangeYellow2,
-        darkColor = OrangeYellow3
-    ),
-    Feature(
-        title = "Calming Sounds",
-        iconId = R.drawable.ic_headphone,
-        lightColor = Beige1,
-        mediumColor = Beige2,
-        darkColor = Beige3
-    )
-)
-
 val chipList = listOf("Sweet sleep", "Insomnia", "Depression")
 
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onFeatureClick: (featureId: Int) -> Unit,
+    // TODO viewmodel ok
+    viewModel: HomeScreenViewModel = viewModel()
 ) {
+    // TODO viewmodel ok
+    val features = viewModel.features.collectAsStateWithLifecycle().value // CORRETTO?
+
     Box(
         modifier = modifier
             .background(DeepBlue)
@@ -121,7 +100,9 @@ fun HomeScreen(
             // 3
             CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")
             // 4
-            FeatureSection(featureElements)
+            FeatureSection(features, onFeatureClick = { id ->
+                onFeatureClick(id)
+            })
         }
         BottomMenu(
             navigationItems,
@@ -183,7 +164,7 @@ fun GreetingSection(
 }
 
 
-// 2° sezione
+// --------- 2° SECTION ----------------------------------------------
 @Composable
 fun ChipSection(
     chips: List<String>
@@ -223,7 +204,7 @@ fun ChipSection(
 }
 
 
-// 3° sezione
+// --------- 3° SECTION ----------------------------------------------
 @Composable
 fun CurrentMeditation(
     color: Color = LightRed,
@@ -279,12 +260,13 @@ fun CurrentMeditation(
     }
 }
 
-// 4° sezione
+// ---------4° SECTION ----------------------------------------------
 // LazyVerticalGrid,
 // LazyVerticalStaggeredGrid
 @Composable
 fun FeatureSection(
-    features: List<Feature>
+    features: List<Feature>,
+    onFeatureClick: (featureId: Int) -> Unit
 ) {
     Column(
         modifier = Modifier.padding(top = 20.dp)
@@ -321,8 +303,15 @@ fun FeatureSection(
 //                .fillMaxWidth() // no
         ) {
             // count, itemCount lambda -> obbligatori
-            items(features.size) {
-                FeatureItem(feature = features[it])
+//            items(features.size) {
+            items(features) { feature ->
+                Box(
+                    modifier = Modifier.clickable {
+                        onFeatureClick(feature.id)
+                    }
+                ) {
+                    FeatureItem(feature = feature)
+                }
             }
         }
     }

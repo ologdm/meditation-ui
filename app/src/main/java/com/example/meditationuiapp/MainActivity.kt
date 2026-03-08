@@ -5,13 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation3.ui.NavDisplay
 import com.example.meditationuiapp.ui.theme.DeepBlue
 import com.example.meditationuiapp.ui.theme.MeditationUiAppTheme
 
@@ -23,14 +22,22 @@ class MainActivity : ComponentActivity() {
             statusBarStyle = SystemBarStyle.dark(DeepBlue.toArgb()),
             navigationBarStyle = SystemBarStyle.dark(DeepBlue.toArgb())
         )
+
         setContent {
             MeditationUiAppTheme {
-                HomeScreen(
-                    // Aggiunge solo il padding necessario
+                NavigationRoot(
                     modifier = Modifier
                         .navigationBarsPadding()
                         .systemBarsPadding()
+                        .fillMaxSize(),
                 )
+//                HomeScreen(
+//                    // Aggiunge solo il padding necessario
+//                    modifier = Modifier
+//                        .navigationBarsPadding()
+//                        .systemBarsPadding(),
+//                    onFeatureClick = {}
+//                )
             }
         }
     }
