@@ -233,7 +233,7 @@ fun CurrentMeditation(
             Text(
                 text = subTitle,
                 style = typography.bodyMedium,
-                fontWeight = FontWeight.SemiBold,
+                fontWeight = FontWeight.SemiBold, // custom
                 color = TextWhite,
             )
         }
@@ -274,8 +274,6 @@ fun FeaturesSection(
         Text(
             text = sectionTitle,
             style = typography.titleLarge,
-//            color = Color.White,
-//            fontSize = 26.sp,
             modifier = Modifier.padding(horizontal = 15.dp)
         )
 
@@ -336,7 +334,6 @@ fun FeatureItem(
         horizontal = 20.dp
     ), // default per home page
     showTitle: Boolean = true,
-    titleSize: TextUnit = 20.sp,
     iconSize: Dp = 22.dp,
     buttonTextSize: TextUnit = 13.sp, // // 12 default per home page
     buttonPadding: PaddingValues = PaddingValues(vertical = 10.dp, horizontal = 20.dp),
@@ -417,13 +414,10 @@ fun FeatureItem(
             if (showTitle) {
                 Text(
                     text = feature.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.White,
-                    fontSize = titleSize,
-                    letterSpacing = 0.5.sp,
-                    lineHeight = 30.sp, // piu spazio tra le righe
-                    modifier = Modifier
-                        .align(Alignment.TopStart) //
+                    style = typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 32.sp, // custom - piu spazio tra le righe
+                    modifier = Modifier.align(Alignment.TopStart)
                 )
             }
 
@@ -451,16 +445,12 @@ fun FeatureItem(
                     color = TextWhite,
                     fontSize = buttonTextSize,
                     fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.bodySmall,
+                    style = typography.bodyMedium,
                     modifier = Modifier
 //                        .align(Alignment.BottomEnd)
                         .clip(RoundedCornerShape(14.dp))
                         .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
                         .padding(buttonPadding) // margine interno, personalizzabile
-                        .clickable {
-                            // TODO da solo
-                            //  open detail view
-                        }
                 )
             }
 
