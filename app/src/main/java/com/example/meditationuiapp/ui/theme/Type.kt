@@ -22,16 +22,6 @@ val gothicA1Family = FontFamily(
 
 
 val Typography = Typography(
-    // body1
-    bodyLarge = TextStyle(
-        color = AquaBlue,
-        fontFamily = gothicA1Family,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp, // era 16.sp
-//        lineHeight = 24.sp,
-//        letterSpacing = 0.5.sp
-    ),
-
     // h1
     titleLarge = TextStyle(
         color = TextWhite,
@@ -46,8 +36,47 @@ val Typography = Typography(
         fontFamily = gothicA1Family,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,
+    ),
+
+    // body1
+    bodyLarge = TextStyle(
+        color = AquaBlue,
+        fontFamily = gothicA1Family,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp, // era 16.sp
+//        lineHeight = 24.sp,
+//        letterSpacing = 0.5.sp
+    ),
+    // body2
+    bodyMedium = TextStyle(
+        color = AquaBlue,
+        fontFamily = gothicA1Family,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp, // era 16.sp
+//        lineHeight = 24.sp,
+//        letterSpacing = 0.5.sp
+    ),
+
+
+    /*
+     * NOTES: bodyLarge vs bodyMedium
+     *  cambio fontSize, ma hanno anche 'lineHeight' e 'letterSpacing' diversi; quindi aplicati in questo modo hanno risultati diversi
+        Text(
+            text = "Abc,
+            style = typography.bodyLarge,
+            fontSize = 18.sp
     )
 
+        Text(
+            text = "Abc,
+            style = typography.bodyLarge,
+            fontSize = 18.sp
+    )
+     */
+
+
+
+    // esempio
     /*
     labelSmall = TextStyle(
         fontFamily = FontFamily.Default,
