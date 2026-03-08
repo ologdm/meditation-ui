@@ -324,14 +324,16 @@ fun FeatureSection(
 //
 @Composable
 fun FeatureItem(
-    feature: Feature
+    feature: Feature,
+    aspectRatio: Float = 1f, // forma, 1f=quadrato
+    modifier: Modifier = Modifier
 ) {
     // main component -----------
     // struttura interna: elementi sovrapposti
     BoxWithConstraints(
         modifier = Modifier
             .padding(7.5.dp) // 7.5dp
-            .aspectRatio(1f) // forma, 1f=quadrato
+            .aspectRatio(aspectRatio) // forma, 1f=quadrato
             .clip(RoundedCornerShape(10.dp))
             .background(feature.darkColor) // strato inferione
     ) {
