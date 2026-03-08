@@ -35,45 +35,69 @@ class FeatureDetailViewModel(
 }
 
 
-//data class FeatureDetailState(
-//    val feature: Feature
-//)
 
 
-// ----------------------------------------
+// ------------------------------------------------------------------------------------------------------
 val featureElements = listOf(
     Feature(
         id = 1,
         title = "Sleep Meditation",
+        subtitle = "Best practice meditations",
         iconId = R.drawable.ic_headphone,
         lightColor = BlueViolet1,
         mediumColor = BlueViolet2,
-        darkColor = BlueViolet3
+        darkColor = BlueViolet3,
+        category = "Sleep Music",
+        time = "45 min",
+        descriptor = "Ease the mind into a restful night's sleep with these deep, ambient tones.",
+        savedQty = 12542,
+        listenQty = 43453
     ),
     Feature(
         id = 2,
-        title = "Tips for sleeping",
+        title = "Tips for Sleeping",
+        subtitle = "Healthy sleep habits",
         iconId = R.drawable.ic_videocam,
         lightColor = LightGreen1,
         mediumColor = LightGreen2,
-        darkColor = LightGreen3
+        darkColor = LightGreen3,
+        category = "Sleep Guide",
+        time = "12 min",
+        descriptor = "Practical techniques and habits to help you fall asleep faster and improve sleep quality.",
+        savedQty = 8543,
+        listenQty = 21432
     ),
     Feature(
         id = 3,
-        title = "Night island",
+        title = "Night Island",
+        subtitle = "Peaceful island sounds" ,
         iconId = R.drawable.ic_headphone,
         lightColor = OrangeYellow1,
         mediumColor = OrangeYellow2,
-        darkColor = OrangeYellow3
+        darkColor = OrangeYellow3,
+        category = "Nature Sounds",
+        time = "30 min",
+        descriptor = "Relax with gentle waves, soft wind, and distant night sounds from a peaceful island.",
+        savedQty = 9631,
+        listenQty = 28764
     ),
     Feature(
         id = 4,
         title = "Calming Sounds",
+        subtitle = "Relaxing ambient audio",
         iconId = R.drawable.ic_headphone,
         lightColor = Beige1,
         mediumColor = Beige2,
-        darkColor = Beige3
+        darkColor = Beige3,
+        category = "Relaxing Audio",
+        time = "50 min",
+        descriptor = "A collection of soothing sounds designed to reduce stress and calm the mind.",
+        savedQty = 14221,
+        listenQty = 51234
     )
 )
+
+
+val relatedElements = featureElements.shuffled()
 
 
