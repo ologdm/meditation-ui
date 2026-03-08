@@ -77,24 +77,34 @@ fun HomeScreen(
     // TODO viewmodel ok
     val features = viewModel.features.collectAsStateWithLifecycle().value // CORRETTO?
 
+
+
     Box(
         modifier = modifier
             .background(DeepBlue)
             .fillMaxSize()
     ) {
         Column {
+            //
+            Spacer(modifier = Modifier.padding(bottom = 20.dp))
             // 1
             GreetingSection("Dimitri")
+            //
+            Spacer(modifier = Modifier.padding(bottom = 36.dp))
             // 2
             ChipSection(chipList)
-            // 3
-            CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")
             //
-            Spacer(modifier = Modifier.padding(vertical = 15.dp))
+            Spacer(modifier = Modifier.padding(bottom = 32.dp))
+            // 3
+            CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")  // OK
+            //
+            Spacer(modifier = Modifier.padding(bottom = 50.dp))
             // 4
             FeaturesSection(features, onFeatureClick = { id ->
                 onFeatureClick(id)
             })
+            // bottom delimitato 100dp da 'LazyVerticalGrid -> contentPadding'
+
         }
         BottomMenu(
             navigationItems,
@@ -102,6 +112,8 @@ fun HomeScreen(
         )
     }
 }
+
+// i padding si sommano!!
 
 
 // --------- 1° SECTION ----------------------------------------------
@@ -116,8 +128,10 @@ fun GreetingSection(
         modifier = Modifier
             .fillMaxWidth()
 //            .background(ButtonBlue) // preview
-            .padding(15.dp)
-            .padding(bottom = 6.dp)
+//            .padding(15.dp) // old
+//            .padding(bottom = 6.dp) // old
+            .padding(horizontal = 15.dp) // new with spacers
+
 
     ) {
         Column(
@@ -130,9 +144,9 @@ fun GreetingSection(
                 fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.titleMedium,
                 color = TextWhite,
-                modifier = Modifier
-                    .padding(bottom = 12.dp)
             )
+
+            Spacer(Modifier.padding(bottom = 12.dp))
 
             Text(
                 text = "We wish you have a good day!",
@@ -172,7 +186,8 @@ fun ChipSection(
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    .padding(start = 15.dp, top = 15.dp, bottom = 15.dp) // esterno
+                    // with spacesrs
+                    .padding(start = 15.dp) // esterno
                     .clickable { // azione al click
                         selectedChipIndex = index
                     }
@@ -181,7 +196,10 @@ fun ChipSection(
                         if (selectedChipIndex == index) ButtonBlue
                         else DarkerButtonBlue
                     )
-                    .padding(vertical = 14.dp, horizontal = 18.dp)
+                    .padding(
+                        vertical = 14.dp,
+                        horizontal = 15.dp
+                    )
             ) {
                 Text(
                     chips[index],
@@ -208,10 +226,10 @@ fun CurrentMeditation(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
 //            .background(Color.White) // preview
-            .padding(vertical = 20.dp, horizontal = 15.dp)
+            .padding(horizontal = 15.dp) // external vertical with spacers
             .clip(RoundedCornerShape(16.dp))
             .background(color)
-            .padding(horizontal = 18.dp, vertical = 30.dp)
+            .padding(horizontal = 18.dp, vertical = 30.dp) // internal
             .fillMaxWidth()
 
     ) {
@@ -220,9 +238,11 @@ fun CurrentMeditation(
                 text = text1,
                 style = MaterialTheme.typography.titleMedium,
                 fontSize = 22.sp,
-                color = TextWhite,
-                modifier = Modifier.padding(bottom = 10.dp)
+                color = TextWhite
             )
+
+            Spacer(Modifier.padding(bottom = 10.dp))
+
             Text(
                 text = text2,
                 style = MaterialTheme.typography.bodySmall,
@@ -290,7 +310,11 @@ fun FeaturesSection(
             // GridCells -> Fixed, FixedSize, Adaptive
             columns = GridCells.Fixed(2),
             // 100 perche voglio che lascia spazio alla nav bar
-            contentPadding = PaddingValues(start = 7.5.dp, end = 7.5.dp, bottom = 100.dp),
+            contentPadding = PaddingValues(
+                start = 7.5.dp,
+                end = 7.5.dp,
+                bottom = 100.dp
+            ),
             modifier = Modifier.fillMaxHeight()
 //                .fillMaxWidth() // no
         ) {
