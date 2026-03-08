@@ -44,7 +44,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -98,7 +97,7 @@ fun HomeScreen(
             //
             Spacer(modifier = Modifier.padding(bottom = 32.dp))
             // 3
-            CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")  // OK
+            CurrentMeditation(title = "Daily Thought", subTitle = "Meditation  •  3-10 min")  // OK
             //
             Spacer(modifier = Modifier.padding(bottom = 50.dp))
             // 4
@@ -207,9 +206,8 @@ fun ChipSection(
                     color = TextWhite,
 //                    fontStyle = ,// no
                     style = typography.bodyLarge,
-//                    fontWeight = FontWeight.SemiBold,
-
-                    fontSize = 17.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 16.sp,
                     letterSpacing = 1.5.sp
                 )
             }
@@ -222,8 +220,8 @@ fun ChipSection(
 @Composable
 fun CurrentMeditation(
     color: Color = LightRed,
-    text1: String,
-    text2: String
+    title: String,
+    subTitle: String
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -233,25 +231,28 @@ fun CurrentMeditation(
             .padding(horizontal = 15.dp) // external vertical with spacers
             .clip(RoundedCornerShape(16.dp))
             .background(color)
-            .padding(horizontal = 18.dp, vertical = 30.dp) // internal
+            .padding(horizontal = 18.dp, vertical = 26.dp) // internal
             .fillMaxWidth()
 
     ) {
         Column() {
             Text(
-                text = text1,
-                style = MaterialTheme.typography.titleMedium,
-                fontSize = 22.sp,
+                text = title,
+                style = typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 1.5.sp,
+                fontSize = 20.sp,
                 color = TextWhite
             )
 
             Spacer(Modifier.padding(bottom = 10.dp))
 
             Text(
-                text = text2,
-                style = MaterialTheme.typography.bodySmall,
+                text = subTitle,
+                style = typography.bodySmall,
+//                fontWeight = FontWeight.SemiBold,
                 color = TextWhite,
-                fontSize = 16.sp
+                fontSize = 14.sp
             )
         }
 
