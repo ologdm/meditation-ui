@@ -114,8 +114,6 @@ fun HomeScreen(
     }
 }
 
-// i padding si sommano!!
-
 
 // --------- 1° SECTION ---------------------------------------------- TODO OK
 @Composable
@@ -124,13 +122,10 @@ fun GreetingSection(
 ) {
     Row(
         // voglio mettere gli elementi ai lati della riga
-        horizontalArrangement = Arrangement.SpaceBetween, // spingi elementi ai lati
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-//            .background(ButtonBlue) // preview
-//            .padding(15.dp) // old
-//            .padding(bottom = 6.dp) // old
             .padding(horizontal = 15.dp) // new with spacers
 
 
@@ -140,20 +135,15 @@ fun GreetingSection(
         ) {
             Text(
                 text = "Good morning, $name",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
                 style = typography.titleMedium,
-                color = TextWhite,
             )
 
             Spacer(Modifier.padding(bottom = 15.dp))
 
             Text(
                 text = "We wish you have a good day!",
-                style = typography.bodyLarge,
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 13.sp,
-                color = AquaBlue,
+                style = typography.bodyMedium,
+                fontWeight = FontWeight.SemiBold, // custom
             )
         }
 
@@ -178,9 +168,7 @@ fun ChipSection(
     // unico per il gruppo
     var selectedChipIndex by remember { mutableStateOf(0) }
 
-    LazyRow(
-//        Modifier.background(Color.DarkGray) // preview
-    ) {
+    LazyRow {
         // items = componente di compose
         items(chips.size) { index ->
             Box(
@@ -207,8 +195,7 @@ fun ChipSection(
 //                    fontStyle = ,// no
                     style = typography.bodyLarge,
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = 16.sp,
-                    letterSpacing = 1.5.sp
+                    letterSpacing = 1.5.sp // custom
                 )
             }
         }
@@ -227,34 +214,30 @@ fun CurrentMeditation(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-//            .background(Color.White) // preview
             .padding(horizontal = 15.dp) // external vertical with spacers
             .clip(RoundedCornerShape(16.dp))
             .background(color)
-            .padding(horizontal = 18.dp, vertical = 26.dp) // internal
+            .padding(horizontal = 18.dp, vertical = 28.dp) // internal
             .fillMaxWidth()
 
     ) {
-        Column() {
+        Column {
+
             Text(
                 text = title,
                 style = typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.5.sp,
-                fontSize = 20.sp,
-                color = TextWhite
             )
 
-            Spacer(Modifier.padding(bottom = 10.dp))
+            Spacer(Modifier.padding(bottom = 12.dp))
 
             Text(
                 text = subTitle,
-                style = typography.bodySmall,
-//                fontWeight = FontWeight.SemiBold,
+                style = typography.bodyMedium,
+                fontWeight = FontWeight.SemiBold,
                 color = TextWhite,
-                fontSize = 14.sp
             )
         }
+
 
         Box(
             contentAlignment = Alignment.Center,
