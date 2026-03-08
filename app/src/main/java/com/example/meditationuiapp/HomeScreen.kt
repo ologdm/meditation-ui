@@ -255,7 +255,8 @@ fun CurrentMeditation(
 @Composable
 fun FeatureSection(
     features: List<Feature>,
-    onFeatureClick: (featureId: Int) -> Unit
+    onFeatureClick: (featureId: Int) -> Unit,
+    sectionTitle: String = "Featured",
 ) {
     Column(
         modifier = Modifier.padding(top = 20.dp)
@@ -263,7 +264,7 @@ fun FeatureSection(
     ) {
         // 1 elemento
         Text(
-            text = "Featured",
+            text = sectionTitle,
             style = MaterialTheme.typography.titleLarge,
             color = Color.White,
             fontSize = 28.sp,
@@ -321,8 +322,8 @@ fun FeatureItem(
         horizontal = 20.dp
     ), // default per home page
     showTitle: Boolean = true,
-    titleSize : TextUnit = 20.sp,
-    iconSize : Dp = 22.dp,
+    titleSize: TextUnit = 20.sp,
+    iconSize: Dp = 22.dp,
     buttonTextSize: TextUnit = 13.sp, // // 12 default per home page
     buttonPadding: PaddingValues = PaddingValues(vertical = 10.dp, horizontal = 20.dp),
     modifier: Modifier = Modifier
@@ -330,7 +331,7 @@ fun FeatureItem(
     // main component -----------
     // struttura interna: elementi sovrapposti
     BoxWithConstraints(
-        modifier = Modifier
+        modifier = modifier
             .padding(externalContainerPadding) // default 7.5dp
             .aspectRatio(aspectRatio) // forma, 1f=quadrato
             .clip(RoundedCornerShape(16.dp))
