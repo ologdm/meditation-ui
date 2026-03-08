@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -88,8 +89,10 @@ fun HomeScreen(
             ChipSection(chipList)
             // 3
             CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")
+
+            Spacer(modifier = Modifier.padding(vertical = 15.dp))
             // 4
-            FeatureSection(features, onFeatureClick = { id ->
+            FeaturesSection(features, onFeatureClick = { id ->
                 onFeatureClick(id)
             })
         }
@@ -244,8 +247,6 @@ fun CurrentMeditation(
                 modifier = Modifier.size(14.dp)
             )
         }
-
-
     }
 }
 
@@ -253,14 +254,13 @@ fun CurrentMeditation(
 // LazyVerticalGrid,
 // LazyVerticalStaggeredGrid
 @Composable
-fun FeatureSection(
+fun FeaturesSection(
     features: List<Feature>,
     onFeatureClick: (featureId: Int) -> Unit,
     sectionTitle: String = "Featured",
 ) {
     Column(
-        modifier = Modifier.padding(top = 20.dp)
-
+//        modifier = Modifier.padding(top = 20.dp) // moved su Spacer
     ) {
         // 1 elemento
         Text(
@@ -268,8 +268,10 @@ fun FeatureSection(
             style = MaterialTheme.typography.titleLarge,
             color = Color.White,
             fontSize = 28.sp,
-            modifier = Modifier.padding(15.dp)
+            modifier = Modifier.padding(horizontal = 15.dp)
         )
+
+        Spacer(modifier = Modifier.padding(bottom = 15.dp))
 
         /** LazyVerticalGrid -> e cambiata nella ultime versioni
          * firma attuale di base */
