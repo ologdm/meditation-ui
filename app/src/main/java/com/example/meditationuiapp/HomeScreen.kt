@@ -19,7 +19,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -40,27 +39,17 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.meditationuiapp.ui.theme.AquaBlue
-import com.example.meditationuiapp.ui.theme.Beige1
-import com.example.meditationuiapp.ui.theme.Beige2
-import com.example.meditationuiapp.ui.theme.Beige3
-import com.example.meditationuiapp.ui.theme.BlueViolet1
-import com.example.meditationuiapp.ui.theme.BlueViolet2
-import com.example.meditationuiapp.ui.theme.BlueViolet3
 import com.example.meditationuiapp.ui.theme.ButtonBlue
 import com.example.meditationuiapp.ui.theme.DarkerButtonBlue
 import com.example.meditationuiapp.ui.theme.DeepBlue
-import com.example.meditationuiapp.ui.theme.LightGreen1
-import com.example.meditationuiapp.ui.theme.LightGreen2
-import com.example.meditationuiapp.ui.theme.LightGreen3
 import com.example.meditationuiapp.ui.theme.LightRed
-import com.example.meditationuiapp.ui.theme.OrangeYellow1
-import com.example.meditationuiapp.ui.theme.OrangeYellow2
-import com.example.meditationuiapp.ui.theme.OrangeYellow3
 import com.example.meditationuiapp.ui.theme.TextWhite
 
 
@@ -321,20 +310,30 @@ fun FeatureSection(
 
 // Canvas for waves
 // BoxWithConstraints
-//
+// ha i default settati per home page
 @Composable
 fun FeatureItem(
     feature: Feature,
     aspectRatio: Float = 1f, // forma, 1f=quadrato
+    externalContainerPadding: PaddingValues = PaddingValues(7.5.dp), // 7.5 default per home page
+    internalContainerPadding: PaddingValues = PaddingValues(
+        vertical = 24.dp,
+        horizontal = 20.dp
+    ), // default per home page
+    showTitle: Boolean = true,
+    titleSize : TextUnit = 20.sp,
+    iconSize : Dp = 22.dp,
+    buttonTextSize: TextUnit = 13.sp, // // 12 default per home page
+    buttonPadding: PaddingValues = PaddingValues(vertical = 10.dp, horizontal = 20.dp),
     modifier: Modifier = Modifier
 ) {
     // main component -----------
     // struttura interna: elementi sovrapposti
     BoxWithConstraints(
         modifier = Modifier
-            .padding(7.5.dp) // 7.5dp
+            .padding(externalContainerPadding) // default 7.5dp
             .aspectRatio(aspectRatio) // forma, 1f=quadrato
-            .clip(RoundedCornerShape(10.dp))
+            .clip(RoundedCornerShape(16.dp))
             .background(feature.darkColor) // strato inferione
     ) {
         val width = constraints.maxWidth
@@ -397,50 +396,65 @@ fun FeatureItem(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(vertical = 30.dp, horizontal = 18.dp)
+                .padding(internalContainerPadding) // // default per home page v=24, h=18
         ) {
-            Text(
-                text = feature.title,
-                style = MaterialTheme.typography.titleMedium,
-                color = Color.White,
-                fontSize = 20.sp,
-                letterSpacing = 0.5.sp,
-                lineHeight = 30.sp, // piu spazio tra le righe
-                modifier = Modifier
-                    .align(Alignment.TopStart) //
-            )
 
-            // default painter, contentDescription
-            Icon(
-                painter = painterResource(id = feature.iconId),
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .padding(vertical = 4.dp)
-                    .size(24.dp)
-            )
+            if (showTitle) {
+                Text(
+                    text = feature.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.White,
+                    fontSize = titleSize,
+                    letterSpacing = 0.5.sp,
+                    lineHeight = 30.sp, // piu spazio tra le righe
+                    modifier = Modifier
+                        .align(Alignment.TopStart) //
+                )
+            }
 
-            // default text
-            Text(
-                text = "Start",
-                color = TextWhite,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .clip(RoundedCornerShape(14.dp))
-                    .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
-                    .padding(vertical = 12.dp, horizontal = 18.dp) // margine interno
-                    .clickable {
-                        // TODO da solo
-                        //  open detail view
-                    }
-            )
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+            ) {
+
+                Icon(
+                    painter = painterResource(id = feature.iconId),
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier
+//                        .align(Alignment.BottomStart)
+                        .size(iconSize) // 24, default
+                )
+
+                // default text
+                Text(
+                    text = "Start",
+                    color = TextWhite,
+                    fontSize = buttonTextSize,
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier
+//                        .align(Alignment.BottomEnd)
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
+                        .padding(buttonPadding) // margine interno, personalizzabile
+                        .clickable {
+                            // TODO da solo
+                            //  open detail view
+                        }
+                )
+            }
+
         }
     }
 }
 
+
+// -------------- BOTTOM MENU -----------------------------------------------------------------------
 @Composable
 fun BottomMenu(
     items: List<Pair<Int, String>>, // TODO refactor
@@ -541,7 +555,8 @@ fun BottomMenuItem(
 @Preview(showBackground = true)
 @Composable
 fun BottomNavPreview() {
-    BottomMenu(navigationItems)
+//    BottomMenu(navigationItems)
+    FeatureItem(featureElements[0])
 }
 
 
