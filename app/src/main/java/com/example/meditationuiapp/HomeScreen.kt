@@ -170,7 +170,7 @@ fun GreetingSection(
 }
 
 
-// --------- 2° SECTION ---------------------------------------------- TODO
+// --------- 2° SECTION ---------------------------------------------- TODO OK
 @Composable
 fun ChipSection(
     chips: List<String>
@@ -216,7 +216,7 @@ fun ChipSection(
 }
 
 
-// --------- 3° SECTION ----------------------------------------------
+// --------- 3° SECTION ---------------------------------------------- TODO OK
 @Composable
 fun CurrentMeditation(
     color: Color = LightRed,
@@ -290,9 +290,9 @@ fun FeaturesSection(
         // 1 elemento
         Text(
             text = sectionTitle,
-            style = MaterialTheme.typography.titleLarge,
-            color = Color.White,
-            fontSize = 28.sp,
+            style = typography.titleLarge,
+//            color = Color.White,
+//            fontSize = 26.sp,
             modifier = Modifier.padding(horizontal = 15.dp)
         )
 
