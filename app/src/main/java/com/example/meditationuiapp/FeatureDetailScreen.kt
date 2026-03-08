@@ -164,13 +164,15 @@ fun TopSection(
         Icon(
             painter = painterResource(id = R.drawable.ic_back_button),
             contentDescription = null,
-            tint = AquaBlue,
+            tint = TextWhite,
             modifier = Modifier.size(28.dp)
         )
         Icon(
-            painter = painterResource(id = R.drawable.ic_star_temporary),
+            painter = painterResource(id = R.drawable.ic_star),
             contentDescription = null,
             tint = TextWhite,
+            modifier = Modifier
+                .size(20.dp)
         )
     }
 }
@@ -209,28 +211,17 @@ fun InfoDetailSection(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-//            Text(
-//                text = "X XXXXXX ",
-//                fontSize = 16.sp,
-//                color = AquaBlue
-//            )
-//
-//            // alternative to Arrangement.SpaceBetween
-////            Spacer(modifier = Modifier.weight(1f))
-//
-//            Text(
-//                text = "X XXXXXX ",
-//                fontSize = 16.sp,
-//                color = AquaBlue
-//            )
 
             // saved
             QuantityContainer(
-                painterResource = R.drawable.ic_star_temporary,
-                iconSize = 22.dp,
+                painterResource = R.drawable.ic_star,
+                iconSize = 20.dp,
                 qty = feature.savedQty,
                 typeText = "Saved",
             )
+
+            //            // alternative to Arrangement.SpaceBetween
+////            Spacer(modifier = Modifier.weight(1f))
 
             // listening
             QuantityContainer(
