@@ -23,16 +23,16 @@ val gothicA1Family = FontFamily(
 
 val Typography = Typography(
     // h1
-    titleLarge = TextStyle(
+    titleLarge = TextStyle( // es Featured, Detail Sleep Meditation
         color = TextWhite,
         fontFamily = gothicA1Family,
-        fontWeight = FontWeight.Bold,
-        fontSize = 22.sp,
-        letterSpacing = 1.5.sp
+        fontWeight = FontWeight.Black,
+        fontSize = 26.sp,
+        letterSpacing = 1.7.sp
     ),
 
     // h2
-    titleMedium = TextStyle(
+    titleMedium = TextStyle( // es Good Morning, Daily, Feature title?
         color = TextWhite,
         fontFamily = gothicA1Family,
         fontWeight = FontWeight.Bold,
@@ -41,7 +41,7 @@ val Typography = Typography(
     ),
 
     // body1
-    bodyLarge = TextStyle(
+    bodyLarge = TextStyle( // es daily subtitle, detail description
         color = AquaBlue,
         fontFamily = gothicA1Family,
         fontWeight = FontWeight.Normal,
@@ -50,7 +50,7 @@ val Typography = Typography(
         letterSpacing = 1.sp
     ),
     // body2
-    bodyMedium = TextStyle(
+    bodyMedium = TextStyle( // others
         color = AquaBlue,
         fontFamily = gothicA1Family,
         fontWeight = FontWeight.Normal,
