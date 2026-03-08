@@ -118,7 +118,7 @@ fun HomeScreen(
 // i padding si sommano!!
 
 
-// --------- 1° SECTION ----------------------------------------------
+// --------- 1° SECTION ---------------------------------------------- TODO OK
 @Composable
 fun GreetingSection(
     name: String = "Mario",
@@ -152,7 +152,8 @@ fun GreetingSection(
             Text(
                 text = "We wish you have a good day!",
                 style = typography.bodyLarge,
-                fontSize = 15.sp,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 13.sp,
                 color = AquaBlue,
             )
         }
@@ -170,7 +171,7 @@ fun GreetingSection(
 }
 
 
-// --------- 2° SECTION ----------------------------------------------
+// --------- 2° SECTION ---------------------------------------------- TODO
 @Composable
 fun ChipSection(
     chips: List<String>
@@ -197,7 +198,7 @@ fun ChipSection(
                         else DarkerButtonBlue
                     )
                     .padding(
-                        vertical = 15.dp,
+                        vertical = 16.dp,
                         horizontal = 16.dp
                     )
             ) {
@@ -206,6 +207,8 @@ fun ChipSection(
                     color = TextWhite,
 //                    fontStyle = ,// no
                     style = typography.bodyLarge,
+//                    fontWeight = FontWeight.SemiBold,
+
                     fontSize = 17.sp,
                     letterSpacing = 1.5.sp
                 )
