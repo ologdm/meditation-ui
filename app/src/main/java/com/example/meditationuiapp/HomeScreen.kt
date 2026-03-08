@@ -89,7 +89,7 @@ fun HomeScreen(
             ChipSection(chipList)
             // 3
             CurrentMeditation(text1 = "Daily Thought", text2 = "Meditation • 3-10 min")
-
+            //
             Spacer(modifier = Modifier.padding(vertical = 15.dp))
             // 4
             FeaturesSection(features, onFeatureClick = { id ->
@@ -559,7 +559,7 @@ fun BottomMenuItem(
 @Composable
 fun BottomNavPreview() {
 //    BottomMenu(navigationItems)
-    FeatureItem(featureElements[0])
+    HomeScreen(onFeatureClick = {})
 }
 
 
