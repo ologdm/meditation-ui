@@ -27,7 +27,8 @@ val Typography = Typography(
         color = TextWhite,
         fontFamily = gothicA1Family,
         fontWeight = FontWeight.Bold,
-        fontSize = 22.sp
+        fontSize = 22.sp,
+        letterSpacing = 1.5.sp
     ),
 
     // h2
@@ -36,6 +37,7 @@ val Typography = Typography(
         fontFamily = gothicA1Family,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp,
+        letterSpacing = 1.5.sp
     ),
 
     // body1
@@ -45,7 +47,7 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp, // era 16.sp
 //        lineHeight = 24.sp,
-//        letterSpacing = 0.5.sp
+        letterSpacing = 1.sp
     ),
     // body2
     bodyMedium = TextStyle(
@@ -54,7 +56,7 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp, // era 16.sp
 //        lineHeight = 24.sp,
-//        letterSpacing = 0.5.sp
+        letterSpacing = 1.5.sp
     ),
 
 
