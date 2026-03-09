@@ -1,6 +1,7 @@
 package com.example.meditationuiapp
 
 import android.graphics.drawable.Icon
+import android.util.Log.d
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,7 @@ import com.example.meditationuiapp.ui.theme.AquaBlue
 import com.example.meditationuiapp.ui.theme.DeepBlue
 import com.example.meditationuiapp.ui.theme.TextWhite
 import com.example.meditationuiapp.ui.theme.Typography
+import java.util.Locale
 
 
 // padding:
@@ -90,8 +92,6 @@ fun FeatureDetailScreen(
         // sez 2
         Text(
             text = state.value.title,
-//            color = TextWhite,
-//            fontSize = 30.sp,
             style = typography.titleLarge,
             modifier = Modifier.padding(layoutHorizPadding)
         )
@@ -100,10 +100,8 @@ fun FeatureDetailScreen(
 
         Text(
             text = "Best practice meditations",
-//            color = AquaBlue,
-//            fontSize = 16.sp,
             style = typography.bodyLarge,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.SemiBold, // custom
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
@@ -113,13 +111,13 @@ fun FeatureDetailScreen(
         // sez 3
         FeatureItem(
             featureElements[0],
-            aspectRatio = 1.4f, // pers
+            aspectRatio = 1.45f, // custom
             showTitle = false,
             externalContainerPadding = PaddingValues(0.dp),
             internalContainerPadding = PaddingValues(
                 vertical = 24.dp,
                 horizontal = 24.dp
-            ), // custom detail
+            ),
             buttonPadding = PaddingValues(vertical = 18.dp, horizontal = 16.dp),
             buttonTextSize = 16.sp,
             iconSize = 24.dp,
@@ -128,9 +126,9 @@ fun FeatureDetailScreen(
                 .padding(layoutHorizPadding)
         )
 
-        Spacer(modifier = Modifier.padding(bottom = 20.dp))
+        Spacer(modifier = Modifier.padding(bottom = 24.dp))
 
-        // sez 4 descrizione
+        // sez 4
         InfoDetailSection(
             modifier = Modifier.padding(layoutHorizPadding),
             feature = state.value
@@ -139,14 +137,14 @@ fun FeatureDetailScreen(
         Spacer(modifier = Modifier.padding(vertical = 18.dp))
 
         HorizontalDivider(
-            color = AquaBlue,
+            color = Color.DarkGray,
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
         Spacer(modifier = Modifier.padding(vertical = 18.dp))
 
         // sez 5
-        FeaturesSection(featureElements, onFeatureClick = { }, sectionTitle = "Related")
+        FeaturesSection(relatedElements, onFeatureClick = { }, sectionTitle = "Related")
 
     }
 
@@ -193,21 +191,18 @@ fun InfoDetailSection(
 
         Text(
             text = "${feature.category}   •   ${feature.time} min",
-//            fontSize = 14.sp,
-            color = AquaBlue,
-            style = Typography.bodyMedium
-        )
-
-        Spacer(Modifier.padding(bottom = 12.dp))
-
-        Text(
-            text = feature.description,
-//            fontSize = 16.sp,
-            color = AquaBlue,
-            style = Typography.bodyMedium
+            style = typography.bodyMedium
         )
 
         Spacer(Modifier.padding(bottom = 20.dp))
+
+        Text(
+            text = feature.description,
+            style = Typography.bodyLarge,
+            lineHeight = 24.sp // custom
+        )
+
+        Spacer(Modifier.padding(bottom = 24.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -260,10 +255,9 @@ fun QuantityContainer(
         )
 
         Text(
-            text = "$qty $typeText",
-//            fontSize = 14.sp,
+            text = "${String.format(Locale.US, "%,d", qty)} $typeText",
+            style = typography.bodyMedium,
             color = color,
-            style = Typography.bodySmall.copy(fontSize = 16.sp)
         )
     }
 }
