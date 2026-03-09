@@ -335,8 +335,8 @@ fun FeatureItem(
     ), // default per home page
     showTitle: Boolean = true,
     iconSize: Dp = 22.dp,
-    buttonTextSize: TextUnit = 13.sp, // // 12 default per home page
-    buttonPadding: PaddingValues = PaddingValues(vertical = 10.dp, horizontal = 20.dp),
+    buttonTextSize: TextUnit = 11.sp, // // 12 default per home page
+    buttonPadding: PaddingValues = PaddingValues(vertical = 12.dp, horizontal = 16.dp),
     modifier: Modifier = Modifier
 ) {
     // main component -----------
@@ -448,7 +448,7 @@ fun FeatureItem(
                     style = typography.bodyMedium,
                     modifier = Modifier
 //                        .align(Alignment.BottomEnd)
-                        .clip(RoundedCornerShape(14.dp))
+                        .clip(RoundedCornerShape(10.dp))
                         .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
                         .padding(buttonPadding) // margine interno, personalizzabile
                 )
