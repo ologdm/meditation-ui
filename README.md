@@ -1,7 +1,7 @@
 # Meditation Mobile App UI
 
-Android UI built in Jetpack Compose based on the "Meditation Mobile App" design.
-
+Android UI built in **Jetpack Compose**, based on the "Meditation Mobile App" design, 
+using **Navigation 3** libraries for navigation and **Compose ViewModels** for state management and screen communication.
 
 ## Screenshots
 
