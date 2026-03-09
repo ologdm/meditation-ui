@@ -6,7 +6,8 @@ Android UI built in Jetpack Compose based on the "Meditation Mobile App" design.
 ## Screenshots
 
 <div class="row">
-  <img src="app/app-screenshots/explore.png" width="33%"/>
+  <img src="app/app-screenshots/explore_screen.png" width="33%"/>
+  <img src="app/app-screenshots/detail_sceen.png" width="33%"/>
 </div>
 
 
