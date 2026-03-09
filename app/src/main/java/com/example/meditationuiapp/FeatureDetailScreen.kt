@@ -3,6 +3,7 @@ package com.example.meditationuiapp
 import android.graphics.drawable.Icon
 import android.util.Log.d
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -52,7 +53,7 @@ import java.util.Locale
 @Preview
 @Composable
 fun detailPreview(modifier: Modifier = Modifier) {
-    FeatureDetailScreen(id = 1, modifier = modifier)
+    FeatureDetailScreen(id = 1, modifier = modifier, onBackClick = {})
 }
 
 
@@ -63,6 +64,7 @@ fun FeatureDetailScreen(
     viewModel: FeatureDetailViewModel = viewModel {
         FeatureDetailViewModel(id)
     },
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val layoutHorizPadding = PaddingValues(horizontal = 15.dp)
@@ -84,7 +86,10 @@ fun FeatureDetailScreen(
                 .padding(
                     start = 12.dp, // arrow alignment
                     end = 15.dp // star alignment
-                )
+                ),
+            onBackClick = {
+                onBackClick()
+            }
         )
 
         Spacer(modifier = Modifier.padding(bottom = 40.dp))
@@ -110,7 +115,7 @@ fun FeatureDetailScreen(
 
         // sez 3
         FeatureItem(
-            featureElements[0],
+            feature = state.value,
             aspectRatio = 1.45f, // custom
             showTitle = false,
             externalContainerPadding = PaddingValues(0.dp),
@@ -153,7 +158,8 @@ fun FeatureDetailScreen(
 // --------------------------------------------------------------------------
 @Composable
 fun TopSection(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onBackClick: () -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -165,7 +171,11 @@ fun TopSection(
             painter = painterResource(id = R.drawable.ic_back_button),
             contentDescription = null,
             tint = TextWhite,
-            modifier = Modifier.size(28.dp)
+            modifier = Modifier
+                .size(28.dp)
+                .clickable {
+                    onBackClick()
+                }
         )
         Icon(
             painter = painterResource(id = R.drawable.ic_star),
@@ -250,7 +260,7 @@ fun QuantityContainer(
             contentDescription = null,
             tint = color,
             modifier = Modifier
-                .padding(end = 12.dp)
+                .padding(end = 16.dp)
                 .size(iconSize)
         )
 

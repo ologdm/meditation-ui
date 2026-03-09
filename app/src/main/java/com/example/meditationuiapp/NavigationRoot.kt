@@ -17,6 +17,7 @@ fun NavigationRoot(
     modifier: Modifier = Modifier // passare il modifier a tutti i figli nel navDisplay
 ) {
     // 1. backstack
+//    val backStack = rememberNavBackStack(Root.HomePage, Root.FeatureDetail(1))
     val backStack = rememberNavBackStack(Root.HomePage)
 
     // 2. navDisplay
@@ -42,7 +43,8 @@ fun NavigationRoot(
                 // TODO: ok
                 FeatureDetailScreen(
                     modifier = modifier,
-                    id = navKey.id
+                    id = navKey.id,
+                    onBackClick = { backStack.removeLastOrNull() }
                 ) // passa id al viewmodel Detail
             }
         }
