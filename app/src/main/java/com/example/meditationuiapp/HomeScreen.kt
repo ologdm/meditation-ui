@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -87,19 +88,19 @@ fun HomeScreen(
     ) {
         Column {
             //
-            Spacer(modifier = Modifier.padding(bottom = 20.dp))
+            Spacer(Modifier.height(20.dp))
             // 1
             GreetingSection("Dimitri")
             //
-            Spacer(modifier = Modifier.padding(bottom = 36.dp))
+            Spacer(Modifier.height(36.dp))
             // 2
             ChipSection(chipList)
             //
-            Spacer(modifier = Modifier.padding(bottom = 32.dp))
+            Spacer(Modifier.height(32.dp))
             // 3
             CurrentMeditation(title = "Daily Thought", subTitle = "Meditation  •  3-10 min")  // OK
             //
-            Spacer(modifier = Modifier.padding(bottom = 50.dp))
+            Spacer(Modifier.height(50.dp))
             // 4
             FeaturesSection(features, onFeatureClick = { id ->
                 onFeatureClick(id)
@@ -138,7 +139,7 @@ fun GreetingSection(
                 style = typography.titleMedium,
             )
 
-            Spacer(Modifier.padding(bottom = 15.dp))
+            Spacer(Modifier.height(15.dp))
 
             Text(
                 text = "We wish you have a good day!",
@@ -228,7 +229,7 @@ fun CurrentMeditation(
                 style = typography.titleMedium,
             )
 
-            Spacer(Modifier.padding(bottom = 12.dp))
+            Spacer(Modifier.height(12.dp))
 
             Text(
                 text = subTitle,
@@ -277,7 +278,7 @@ fun FeaturesSection(
             modifier = Modifier.padding(horizontal = 15.dp)
         )
 
-        Spacer(modifier = Modifier.padding(bottom = 15.dp))
+        Spacer(Modifier.height(15.dp))
 
         /** LazyVerticalGrid -> e cambiata nella ultime versioni
          * firma attuale di base */
