@@ -345,7 +345,7 @@ fun FeatureItem(
         modifier = modifier
             .padding(externalContainerPadding) // default 7.5dp
             .aspectRatio(aspectRatio) // forma, 1f=quadrato
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(12.dp))
             .background(feature.darkColor) // strato inferione
     ) {
         val width = constraints.maxWidth
