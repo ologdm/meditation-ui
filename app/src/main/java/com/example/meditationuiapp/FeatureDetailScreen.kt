@@ -83,7 +83,7 @@ fun FeatureDetailScreen(
 //            .verticalScroll(scrollState) // TODO
     ) {
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(10.dp))
 
         //sez  1
         TopSection(
@@ -115,7 +115,7 @@ fun FeatureDetailScreen(
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
-        Spacer(Modifier.height(10.dp))
+        Spacer(Modifier.height(20.dp))
 
         // sez 3
         FeatureItem(
@@ -135,7 +135,7 @@ fun FeatureDetailScreen(
                 .padding(layoutHorizPadding)
         )
 
-        Spacer(Modifier.height(24.dp))
+        Spacer(Modifier.height(25.dp))
 
         // sez 4
         InfoDetailSection(
@@ -143,14 +143,14 @@ fun FeatureDetailScreen(
             feature = state.value
         )
 
-        Spacer(modifier = Modifier.height(18.dp))
+        Spacer(modifier = Modifier.height(40.dp))
 
         HorizontalDivider(
             color = Color.DarkGray,
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
-        Spacer(Modifier.height(18.dp))
+        Spacer(Modifier.height(40.dp))
 
         // sez 5
         FeaturesSection(relatedElements, onFeatureClick = { }, sectionTitle = "Related")
@@ -216,7 +216,7 @@ fun InfoDetailSection(
             lineHeight = 24.sp // custom
         )
 
-        Spacer(Modifier.height(24.dp))
+        Spacer(Modifier.height(30.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
