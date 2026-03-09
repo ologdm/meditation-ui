@@ -57,7 +57,7 @@ val Typography = Typography(
         fontSize = 14.sp, //
         letterSpacing = 1.sp
     ),
-
+)
 
     /*
      * NOTES: bodyLarge vs bodyMedium
@@ -87,4 +87,3 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
-)
