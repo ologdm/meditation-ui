@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -89,19 +90,20 @@ fun FeatureDetailScreen(
         // sez 2
         Text(
             text = state.value.title,
-            color = TextWhite,
-            fontSize = 30.sp,
-//            style = typography.titleLarge,
+//            color = TextWhite,
+//            fontSize = 30.sp,
+            style = typography.titleLarge,
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
-        Spacer(modifier = Modifier.padding(bottom = 16.dp))
+        Spacer(modifier = Modifier.padding(bottom = 20.dp))
 
         Text(
             text = "Best practice meditations",
-            color = AquaBlue,
-            fontSize = 16.sp,
-//            style = MaterialTheme.typography.bodyMedium,
+//            color = AquaBlue,
+//            fontSize = 16.sp,
+            style = typography.bodyLarge,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
@@ -118,8 +120,8 @@ fun FeatureDetailScreen(
                 vertical = 24.dp,
                 horizontal = 24.dp
             ), // custom detail
-            buttonPadding = PaddingValues(vertical = 16.dp, horizontal = 16.dp),
-            buttonTextSize = 20.sp,
+            buttonPadding = PaddingValues(vertical = 18.dp, horizontal = 16.dp),
+            buttonTextSize = 16.sp,
             iconSize = 24.dp,
             modifier = Modifier
                 .padding(vertical = 8.dp)
@@ -220,7 +222,7 @@ fun InfoDetailSection(
                 typeText = "Saved",
             )
 
-            //            // alternative to Arrangement.SpaceBetween
+            // alternative to Arrangement.SpaceBetween
 ////            Spacer(modifier = Modifier.weight(1f))
 
             // listening
