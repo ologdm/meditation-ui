@@ -11,8 +11,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -71,14 +74,16 @@ fun FeatureDetailScreen(
 
     val state = viewModel.state.collectAsStateWithLifecycle()
 
+//    val scrollState = rememberScrollState() // corretto?
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(DeepBlue)
             .padding(top = 10.dp)
+//            .verticalScroll(scrollState) // TODO
     ) {
 
-        Spacer(modifier = Modifier.padding(bottom = 16.dp))
+        Spacer(Modifier.height(16.dp))
 
         //sez  1
         TopSection(
@@ -92,7 +97,7 @@ fun FeatureDetailScreen(
             }
         )
 
-        Spacer(modifier = Modifier.padding(bottom = 40.dp))
+        Spacer(Modifier.height(40.dp))
 
         // sez 2
         Text(
@@ -101,7 +106,7 @@ fun FeatureDetailScreen(
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
-        Spacer(modifier = Modifier.padding(bottom = 20.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = "Best practice meditations",
@@ -110,8 +115,7 @@ fun FeatureDetailScreen(
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
-        Spacer(modifier = Modifier.padding(vertical = 10.dp))
-
+        Spacer(Modifier.height(10.dp))
 
         // sez 3
         FeatureItem(
@@ -131,7 +135,7 @@ fun FeatureDetailScreen(
                 .padding(layoutHorizPadding)
         )
 
-        Spacer(modifier = Modifier.padding(bottom = 24.dp))
+        Spacer(Modifier.height(24.dp))
 
         // sez 4
         InfoDetailSection(
@@ -139,21 +143,21 @@ fun FeatureDetailScreen(
             feature = state.value
         )
 
-        Spacer(modifier = Modifier.padding(vertical = 18.dp))
+        Spacer(modifier = Modifier.height(18.dp))
 
         HorizontalDivider(
             color = Color.DarkGray,
             modifier = Modifier.padding(layoutHorizPadding)
         )
 
-        Spacer(modifier = Modifier.padding(vertical = 18.dp))
+        Spacer(Modifier.height(18.dp))
 
         // sez 5
         FeaturesSection(relatedElements, onFeatureClick = { }, sectionTitle = "Related")
 
     }
-
 }
+
 
 // --------------------------------------------------------------------------
 @Composable
@@ -204,7 +208,7 @@ fun InfoDetailSection(
             style = typography.bodyMedium
         )
 
-        Spacer(Modifier.padding(bottom = 20.dp))
+        Spacer(Modifier.height(20.dp))
 
         Text(
             text = feature.description,
@@ -212,7 +216,7 @@ fun InfoDetailSection(
             lineHeight = 24.sp // custom
         )
 
-        Spacer(Modifier.padding(bottom = 24.dp))
+        Spacer(Modifier.height(24.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
