@@ -44,14 +44,8 @@ import java.util.Locale
 // padding:
 //  top 30
 //  start 15 /end 15
-//  related no
+//  related no padding
 // vertical with spacers
-
-// TODO 
-//  proportions up to related ok!
-//  feature internal proportion ok 
-//  info section
-// refacor elementi
 
 @Preview
 @Composable
