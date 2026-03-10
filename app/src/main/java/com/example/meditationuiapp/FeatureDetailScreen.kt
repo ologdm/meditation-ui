@@ -147,7 +147,11 @@ fun FeatureDetailScreen(
         Spacer(Modifier.height(40.dp))
 
         // sez 5
-        FeaturesSection(relatedElements, onFeatureClick = { }, sectionTitle = "Related")
+        FeaturesSection(
+            viewModel.getRelatedFeatures(),
+            onFeatureClick = { },
+            sectionTitle = "Related"
+        )
 
     }
 }

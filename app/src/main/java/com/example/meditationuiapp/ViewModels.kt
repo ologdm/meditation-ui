@@ -32,6 +32,9 @@ class FeatureDetailViewModel(
 
     private val _state = MutableStateFlow(features.first { it.id == featureId })
     val state = _state.asStateFlow()
+
+    //
+    fun getRelatedFeatures() = featureElements.shuffled()
 }
 
 
@@ -96,8 +99,5 @@ val featureElements = listOf(
         listenQty = 51234
     )
 )
-
-
-val relatedElements = featureElements.shuffled()
 
 
