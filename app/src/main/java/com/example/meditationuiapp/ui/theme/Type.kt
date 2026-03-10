@@ -49,6 +49,7 @@ val Typography = Typography(
 //        lineHeight = 24.sp,
         letterSpacing = 1.sp
     ),
+
     // body2
     bodyMedium = TextStyle( // others
         color = AquaBlue,

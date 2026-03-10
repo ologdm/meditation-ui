@@ -24,7 +24,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,8 +55,6 @@ import com.example.meditationuiapp.ui.theme.LightRed
 import com.example.meditationuiapp.ui.theme.TextWhite
 
 
-// TODO
-// devo avere una lista con for each per avere elementi selezionabili
 val navigationItems = listOf(
     Pair(R.drawable.ic_home, "Home"),
     Pair(R.drawable.ic_bubble, "Meditate"),
@@ -67,6 +64,15 @@ val navigationItems = listOf(
 )
 
 val chipList = listOf("Sweet sleep", "Insomnia", "Depression")
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+//    BottomMenu(navigationItems)
+    HomeScreen(onFeatureClick = {})
+}
 
 
 @Composable
@@ -105,7 +111,7 @@ fun HomeScreen(
             FeaturesSection(features, onFeatureClick = { id ->
                 onFeatureClick(id)
             })
-            // bottom delimitato 100dp da 'LazyVerticalGrid -> contentPadding'
+            // NOTE: bottom delimitato 100dp da 'LazyVerticalGrid -> contentPadding'
 
         }
         BottomMenu(
@@ -152,8 +158,6 @@ fun GreetingSection(
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = null,
             tint = TextWhite, // colore standard
-            // alternative
-//            tint = AquaBlue, // colore da color
 //            tint = MaterialTheme.colorScheme.primary, // colore generato da M3
             modifier = Modifier.size(24.dp)
         )
@@ -161,7 +165,7 @@ fun GreetingSection(
 }
 
 
-// --------- 2° SECTION ---------------------------------------------- TODO OK
+// --------- 2° SECTION ----------------------------------------------
 @Composable
 fun ChipSection(
     chips: List<String>
@@ -175,12 +179,11 @@ fun ChipSection(
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    // with spacesrs
                     .padding(start = 15.dp) // esterno
-                    .clickable { // azione al click
+                    .clickable {
                         selectedChipIndex = index
                     }
-                    .clip(RoundedCornerShape(12.dp)) // rotondità
+                    .clip(RoundedCornerShape(12.dp))
                     .background(
                         if (selectedChipIndex == index) ButtonBlue
                         else DarkerButtonBlue
@@ -195,7 +198,7 @@ fun ChipSection(
                     color = TextWhite,
 //                    fontStyle = ,// no
                     style = typography.bodyLarge,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.SemiBold, // custom
                     letterSpacing = 1.5.sp // custom
                 )
             }
@@ -204,7 +207,7 @@ fun ChipSection(
 }
 
 
-// --------- 3° SECTION ---------------------------------------------- TODO OK
+// --------- 3° SECTION ----------------------------------------------
 @Composable
 fun CurrentMeditation(
     color: Color = LightRed,
@@ -215,7 +218,7 @@ fun CurrentMeditation(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(horizontal = 15.dp) // external vertical with spacers
+            .padding(horizontal = 15.dp) // external
             .clip(RoundedCornerShape(16.dp))
             .background(color)
             .padding(horizontal = 18.dp, vertical = 28.dp) // internal
@@ -260,18 +263,13 @@ fun CurrentMeditation(
 }
 
 // ---------4° SECTION ----------------------------------------------
-// LazyVerticalGrid,
-// LazyVerticalStaggeredGrid
 @Composable
 fun FeaturesSection(
     features: List<Feature>,
     onFeatureClick: (featureId: Int) -> Unit,
     sectionTitle: String = "Featured",
 ) {
-    Column(
-//        modifier = Modifier.padding(top = 20.dp) // moved su Spacer
-    ) {
-        // 1 elemento
+    Column {
         Text(
             text = sectionTitle,
             style = typography.titleLarge,
@@ -305,8 +303,6 @@ fun FeaturesSection(
             modifier = Modifier.fillMaxHeight()
 //                .fillMaxWidth() // no
         ) {
-            // count, itemCount lambda -> obbligatori
-//            items(features.size) {
             items(features) { feature ->
                 Box(
                     modifier = Modifier.clickable {
@@ -324,7 +320,7 @@ fun FeaturesSection(
 
 // Canvas for waves
 // BoxWithConstraints
-// ha i default settati per home page
+// default params set for home page
 @Composable
 fun FeatureItem(
     feature: Feature,
@@ -436,7 +432,6 @@ fun FeatureItem(
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier
-//                        .align(Alignment.BottomStart)
                         .size(iconSize) // 24, default
                 )
 
@@ -448,10 +443,9 @@ fun FeatureItem(
                     fontWeight = FontWeight.Bold,
                     style = typography.bodyMedium,
                     modifier = Modifier
-//                        .align(Alignment.BottomEnd)
                         .clip(RoundedCornerShape(10.dp))
                         .background(color = ButtonBlue, shape = RoundedCornerShape(12.dp))
-                        .padding(buttonPadding) // margine interno, personalizzabile
+                        .padding(buttonPadding) // internal
                 )
             }
 
@@ -479,8 +473,8 @@ fun BottomMenu(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .background(DeepBlue) // TODO background solo per test
-            .padding(vertical = 10.dp, horizontal = 20.dp) // interno al background
+            .background(DeepBlue)
+            .padding(vertical = 10.dp, horizontal = 20.dp) // internal
 
     ) {
         items.forEachIndexed { index, item ->
@@ -554,15 +548,5 @@ fun BottomMenuItem(
 //        )
 //    }
 //}
-
-
-// -------------------- PREVIEW ----------------------------------------------
-
-@Preview(showBackground = true)
-@Composable
-fun BottomNavPreview() {
-//    BottomMenu(navigationItems)
-    HomeScreen(onFeatureClick = {})
-}
 
 
